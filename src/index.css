@@ -11,3 +11,23 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.App{
+  max-width: 500px;
+  margin: auto;
+}
+form{
+  display: flex;
+  flex-direction: column;
+} 
+
+form input{
+  border:1px solid #ccc;
+  border-radius: 2px;
+  padding: 4px 6px; 
+  margin: 0 4px;
+}
+
+li {
+  list-style: none;
+}

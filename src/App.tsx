@@ -1,24 +1,37 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import List from './components/List';
+import Form from './components/Form';
+import { Sub } from './types';
 
 function App() {
+
+  const INTIAL = [
+    {
+      nick: "rolando",
+      subMonts: 3,
+      avatar: "https://gravatar.com/avatar/8e04be7dab487d77f16969fd3e0d45d4"
+    }
+  ];
+
+  
+  const [subs, setSub] = useState<Array<Sub>>([]);
+
+  useEffect(() => {
+    setSub(INTIAL);
+  }, []);
+
+  const divRef = useRef<HTMLDivElement>(null)
+
+  const handleNewSub =(e:Sub):void =>{
+    setSub(sub => ([...sub,e]))
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App" ref={divRef} >
+        <List subs={subs}  />
+        <Form onNewSub={handleNewSub} />
     </div>
   );
 }
