@@ -4,6 +4,8 @@ import './App.css';
 import List from './components/List';
 import Form from './components/Form';
 import { Sub } from './types';
+import { LoginForm } from './components/LoginForm/LoginForm';
+
 
 function App() {
 
@@ -30,8 +32,8 @@ function App() {
 
   return (
     <div className="App" ref={divRef} >
-        <List subs={subs}  />
-        <Form onNewSub={handleNewSub} />
+        
+          <LoginForm title='rolando' error={"rosodoka"}  loading={false}  />
     </div>
   );
 }

@@ -1,53 +1,17 @@
 import { useReducer, useState } from "react"
+import useNewSubForm from "../hooks/UseNewsForm"
 import { Sub } from "../types"
 
-interface FormState {
-    inputValues: Sub
-}
+
 interface FormProps {
     onNewSub:(newSub:Sub) => void
 }
-
-
-const INITIAL_STATE={
-         nick:"",
-        subMonts:0,
-        avatar:""
-}
-
-type FomrReducerAction ={
-    type:"Change_value",
-    payload:{
-        inputName:string,
-        inputValue:string
-    }
-}
-| {
-    type:"Clear"
-   } 
-
-const formReducer =(state:FormState["inputValues"],action:FomrReducerAction) =>{
-
-    switch(action.type){
-        case "Change_value":
-            const {inputName,inputValue} = action.payload
-
-            return {
-                ...state,
-                [inputName]:inputValue
-            }
-        case "Clear" :
-            return INITIAL_STATE
-    }
-    
-}
-
 
 const Form =({onNewSub}:FormProps) =>{
 
     //const [inputValues,setInputValues] = useState<FormState["inputValues"]>(INITIAL_STATE)
 
-    const [InputValues,dispatch] = useReducer(formReducer,INITIAL_STATE)
+    const [InputValues,dispatch] = useNewSubForm()
 
 
     const handSubmit = (e: React.FormEvent<HTMLFormElement>) =>{
@@ -75,7 +39,8 @@ const Form =({onNewSub}:FormProps) =>{
         })
     }
 
-   
+
+
     return (
 
         <form onSubmit={handSubmit} >
