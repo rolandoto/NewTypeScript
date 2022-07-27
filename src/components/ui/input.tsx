@@ -10,6 +10,7 @@ type propsInput = {
     margin?: any
     autoComplete?: string
     outlined?: string
+    label?:string
 }
 const Input: React.FC<propsInput> = (props) => {
 

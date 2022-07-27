@@ -1,0 +1,21 @@
+{
+    "initalState": {
+      "menu": [
+        {
+        "id": "1",
+        "name": "Vivair",
+        "path":"vivair "
+        },
+        {
+        "id": "2",
+        "name": "Avianca",
+        "path":"avianca"
+        },
+        {
+        "id": "3",
+        "name": "Travel",
+        "path":"travel"
+        }
+      ]
+    }
+  }

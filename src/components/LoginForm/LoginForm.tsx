@@ -1,8 +1,9 @@
-import { Avatar, Button, Grid, Link, Typography } from "@mui/material"
+import { Avatar, Button, Grid, Link, Typography, } from "@mui/material"
 import {SyntheticEvent} from "react"
 import Input from "../ui/input"
 import { useInputValue } from "../ui/useInputValue"
 import { VALIDATORS_LOGIN_FORM } from "./validators"
+import { red } from '@mui/material/colors';
 
 type Nullable<T> = T | null
 
@@ -15,11 +16,13 @@ export type TValidator = {
 
 type loginFormProps = {
     title?: string,
-    error: Nullable<string>,
+    error?: Nullable<string>,
     loading: boolean
 }
 
-export const LoginForm: React.FC<loginFormProps> = ({title = 'Sign in', error, loading=false}) => {
+export const LoginForm: React.FC<loginFormProps> = ({title = 'Formularios', error, loading=false}) => {
+
+    const color = red[900];
   
     const password = useInputValue({
         value: '',
@@ -53,68 +56,66 @@ export const LoginForm: React.FC<loginFormProps> = ({title = 'Sign in', error, l
 
     const fillSignInHeader = () => (
         <>
-            <Avatar  >
-                
-            </Avatar>
             <Typography component="h1" variant="h5">
                 {title}
             </Typography>
         </>
     )
 
-    const fillLoginHelpers = () => (
-        <Grid container>
-            <Grid item xs>
-                <Link href="#" variant="body2">
-                    Forgot password?
-                </Link>
-            </Grid>
-            <Grid item>
-                <Link href="#" variant="body2">
-                    {'Don\'t have an account? Sign Up'}
-                </Link>
-            </Grid>
-        </Grid>
-    )
-
     const fillForm = () => (
         <>
             <form  noValidate onSubmit={verifyForm}>
                 <Input
-                  
                     required
                     fullWidth
                     variant="outlined"
                     margin="normal"
                     autoComplete="email"
+                    label="Nombre Completo"
                     {...username} />
                 <Input
-                   
+                    required
+                    fullWidth
+                    variant="outlined"
+                    margin="normal"
+                    label="Email"
+                    autoComplete="current-password"
+                    {...password} />
+                <Input
                     required
                     fullWidth
                     variant="outlined"
                     margin="normal"
                     autoComplete="current-password"
+                    label="Celular"
                     {...password} />
-                {error && fillError()}
+                <Input
+                    required
+                    fullWidth
+                    variant="outlined"
+                    margin="normal"
+                    autoComplete="current-password"
+                    label="Rango de edad"
+                    {...password} />
                 <Button
                     type="submit"
                     fullWidth
                     variant="contained"
-                    color="primary"
+                    color="inherit"
                     disabled={isInvalidForm()}
                 >
-                    Sign In
+                    Enviar formularios
                 </Button>
-                {fillLoginHelpers()}
             </form>
         </>
     )
 
     return (
-        <>
-            {fillSignInHeader()}
-            {!loading && fillForm()}
-        </>
+        <div className="container-form" >
+            <div className="login-form">
+                {fillSignInHeader()}
+                {!loading && fillForm()}
+            </div>
+        </div>
     )
 }

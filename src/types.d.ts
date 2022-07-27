@@ -1,5 +1,5 @@
 export interface Sub {
-    nick: string;
-    subMonts: number;
-    avatar: string;
+    id:string,
+    name: string;
+    path:string
 }
