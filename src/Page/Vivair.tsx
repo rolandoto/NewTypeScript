@@ -9,7 +9,7 @@ const Vivair: React.FC =() =>{
 
     return (
         <div className="container" >
-            <Title title='bienvenido, sabemos que quieres viajar en un Vavair por favor
+            <Title title='bienvenido, sabemos que quieres viajar en un Vivair por favor
                 diligencia el siguiente formulario' />
             <LoginForm error={"rosodoka"}  loading={false} />
         </div>
