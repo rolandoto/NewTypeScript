@@ -1,8 +1,11 @@
 import React from "react"
 import { LoginForm } from "../components/LoginForm/LoginForm"
 import Title from "../components/Title/Title"
+import Usetitle from "../Hooks/UseTitle"
 
 const Avianca:React.FC=() =>{
+
+    Usetitle({title:"Avianca"})
 
     return (
         <div className="container" >    

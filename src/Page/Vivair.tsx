@@ -1,8 +1,11 @@
 import React, { useEffect } from 'react'
 import { LoginForm } from '../components/LoginForm/LoginForm'
 import Title from '../components/Title/Title'
+import Usetitle from '../Hooks/UseTitle'
 
 const Vivair: React.FC =() =>{
+
+    Usetitle({title:"Vivair"})
 
     return (
         <div className="container" >

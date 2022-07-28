@@ -89,7 +89,7 @@ export const LoginForm: React.FC<loginFormProps> = ({title = 'Formularios', erro
         setModal(true)
         setTimeout(() =>{
             setModal(false)
-            navigate("/success", { replace: true });
+            navigate("/confirms", { replace: true });
         },5000)
     }
 

@@ -23,7 +23,7 @@ const App:React.FC =() => {
                   <Route  path="/vivair" element={<Vivair/>} />
                   <Route   path="/avianca" element={<Avianca/>} />
                   <Route   path="/travel" element={<Travel />} />
-                  <Route   path="/success" element={<Success />} />
+                  <Route   path="/confirms" element={<Success />} />
                 </Routes>
           </BrowserRouter>
         </Suspense>
