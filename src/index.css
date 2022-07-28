@@ -143,3 +143,33 @@ a{
 .container-form{
   padding: 10px;
 }
+
+.border-ri{
+  /* background-color: rgba(255, 255, 255, .8); */
+     /* background-color: rgba(255, 255, 255, .8); */
+-webkit-backdrop-filter: blur(9px);
+backdrop-filter: blur(4px);
+position: fixed;
+bottom: 0;
+top: 0;
+left: 0;
+right: 0;
+z-index: 1; 
+}
+
+.content-Modal {
+  background-color: whitesmoke;
+  width: 300px;
+  padding: 10px 20px;
+  height: auto;
+  margin: 10vh auto;
+  position: relative;
+  border-radius: 6px;
+  animation: pulse 0.1s ease;
+  margin-top: 12%;
+}
+
+
+.modal-confirm{
+  display: flex;
+}

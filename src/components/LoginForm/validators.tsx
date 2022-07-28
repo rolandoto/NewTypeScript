@@ -1,7 +1,12 @@
+import { PATTERN_EMAIL } from '../Forms/patterns'
 import {
     checkMinLength,
     checkMaxLength,
-    checkPattern
+    checkPattern,
+    rangeMinLength,
+    rangeMaxLength,
+    phoneMaxLength,
+    phoneMinLength
 } from '../Forms/Validators'
 
 
@@ -25,7 +30,7 @@ export const VALIDATORS_LOGIN_FORM = {
             valueToCheck: 100
         }
     ],
-    password: [
+    email: [
         {
             type: 'maxlength',
             message: MAX_LENGTH_MESSAGE,
@@ -43,6 +48,51 @@ export const VALIDATORS_LOGIN_FORM = {
             message: REQUIRED_MESSAGE,
             check: checkMinLength,
             valueToCheck: 0
+        },
+        {
+            type: 'email    ',
+            message: PATTERN_ERROR_MESSAGE,
+            check: checkPattern,
+            valueToCheck: PATTERN_EMAIL
         }
+    ],
+
+    phone: [
+        {
+            type: 'maxlength',
+            message: MAX_LENGTH_MESSAGE.replace("?","10"),
+            check: phoneMaxLength,
+            valueToCheck: 10
+        },
+        {
+            type: 'minlength',
+            message: MIN_LENGTH_MESSAGE.replace('?', '18'),
+            check: phoneMinLength,
+            valueToCheck: 3
+            
+        },
+    ],
+    age: [
+       
+        {
+            type: 'minlength',
+            message: MIN_LENGTH_MESSAGE.replace('?', '18'),
+            check: rangeMinLength,
+            valueToCheck: 18 
+            
+        },
+        {
+            type: 'maxlength',
+            message: MAX_LENGTH_MESSAGE.replace('?', '100'),
+            check: rangeMaxLength,
+            valueToCheck: 100
+            
+        },
+        {
+            type: 'required',
+            message: REQUIRED_MESSAGE,
+            check: checkMinLength,
+            valueToCheck: 0
+        },
     ]
 }

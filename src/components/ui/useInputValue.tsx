@@ -37,8 +37,8 @@ export const useInputValue = ({
     const [helperText, setHelperText] = useState('')
 
     const onChange = (e: any) => {
-        e.target ? setValue(e.target.value) : setValue(e)
-        e.target ? validateInput(e.target.value) : validateInput(e)
+        e.target ? setValue(e.target.value) : setValue("")
+        e.target ? validateInput(e.target.value) : validateInput("")
     }
 
     /**
@@ -66,6 +66,6 @@ export const useInputValue = ({
         errors,
         validators,
         helperText,
-        onChange
+        onChange,
     }
 }

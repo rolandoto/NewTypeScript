@@ -11,6 +11,7 @@ type propsInput = {
     autoComplete?: string
     outlined?: string
     label?:string
+    type?:string
 }
 const Input: React.FC<propsInput> = (props) => {
 

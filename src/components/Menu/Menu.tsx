@@ -15,13 +15,13 @@ const Menu:React.FC =() =>{
     return (
    
         <div>
-             <nav> 
+            <nav> 
                 <ul>        
-                    {state.map((index) => (
-                        <AppMenu {...index} />
+                    {state.map((index,e) => (
+                        <AppMenu {...index} key={e} />
                     ))} 
                 </ul>  
-             </nav>       
+            </nav>       
         </div>
     )
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState ,Suspense} from 'react';
+import React, {Suspense} from 'react';
 import './App.css';
 import Menu from './components/Menu/Menu';
 import {
@@ -9,6 +9,7 @@ import {
 const Vivair = React.lazy(() => import ('./Page/Vivair')) 
 const Avianca = React.lazy(() => import ('./Page/Avianca')) 
 const Travel = React.lazy(() => import ('./Page/Travel'))   
+const Success = React.lazy(() => import ('./Page/Confirms'))   
 
 const App:React.FC =() => {
 
@@ -22,6 +23,7 @@ const App:React.FC =() => {
                   <Route  path="/vivair" element={<Vivair/>} />
                   <Route   path="/avianca" element={<Avianca/>} />
                   <Route   path="/travel" element={<Travel />} />
+                  <Route   path="/success" element={<Success />} />
                 </Routes>
           </BrowserRouter>
         </Suspense>

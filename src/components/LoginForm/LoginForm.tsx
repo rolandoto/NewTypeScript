@@ -1,9 +1,9 @@
-import { Avatar, Button, Grid, Link, Typography, } from "@mui/material"
-import {SyntheticEvent} from "react"
+import { Button, Typography, } from "@mui/material"
+import {SyntheticEvent, useState} from "react"
 import Input from "../ui/input"
 import { useInputValue } from "../ui/useInputValue"
-import { VALIDATORS_LOGIN_FORM } from "./validators"
-import { red } from '@mui/material/colors';
+import { VALIDATORS_LOGIN_FORM } from "./validators";
+import { useNavigate } from "react-router-dom";
 
 type Nullable<T> = T | null
 
@@ -22,29 +22,52 @@ type loginFormProps = {
 
 export const LoginForm: React.FC<loginFormProps> = ({title = 'Formularios', error, loading=false}) => {
 
-    const color = red[900];
-  
-    const password = useInputValue({
+    const username  = useInputValue({
         value: '',
-        name: 'email',
-        type: 'password',
-        label: 'Your password',
-        validators: VALIDATORS_LOGIN_FORM.password as TValidator[]
-    })
-    const username = useInputValue({
-        value: '',
-        name: 'password',
+        name: 'username',
         type: 'text',
         label: 'Your username',
-        validators: VALIDATORS_LOGIN_FORM.username as TValidator[],
+        validators: VALIDATORS_LOGIN_FORM.username as TValidator[]
     })
+
+    const email = useInputValue({
+        value: '',
+        name: 'username',
+        type: 'email',
+        label: 'Your email',
+        validators: VALIDATORS_LOGIN_FORM.email as TValidator[],
+    })
+
+    const phone = useInputValue({
+        value: '',
+        name: 'phone',
+        type: 'number',
+        label: 'Your phone',
+        validators: VALIDATORS_LOGIN_FORM.phone as TValidator[],
+    })
+
+    const age = useInputValue({
+        value: '',
+        name: 'age',
+        type:'number',
+        label: 'Your age',
+        validators: VALIDATORS_LOGIN_FORM.age as TValidator[],
+    })
+
+    let navigate = useNavigate();
 
     const verifyForm = async (e: SyntheticEvent) => {
         e.preventDefault()
         if (isInvalidForm()) {
             // TODO setErrorMessage('you have an error')
         } else {
-           console.log("verde")
+            console.log({
+                username:username.value,
+                email:email.value,
+                phone:phone.value,
+                age:age.value
+                })
+                hand()  
         }
     }
 
@@ -52,7 +75,71 @@ export const LoginForm: React.FC<loginFormProps> = ({title = 'Formularios', erro
         return <span>{error}</span>
     }
 
-    const isInvalidForm = () => !!(username.errors.length > 0 || password.errors.length > 0)
+    const isInvalidForm = () =>!!(username.errors.length>0 || email.errors.length>0|| phone.errors.length>0|| age.errors.length>0)
+
+    const [state,setState] =useState(false)
+    const [ismodal,setModal]=useState(false)
+
+    const hand =() =>{
+        setState(true)
+    }
+
+    const  hanConfirm =async () =>{
+        setState(false)
+        setModal(true)
+        setTimeout(() =>{
+            setModal(false)
+            navigate("/success", { replace: true });
+        },5000)
+    }
+
+    const Modal =() =>(
+        <>
+        {state && <div className="border-ri" >
+                        <div className="content-Modal" >
+                            <div>
+                                <span>Confirmacion</span>
+                            </div>
+
+                            <div className="modal-confirm" >
+                            <Button
+                                type="submit"
+                                fullWidth
+                                variant="contained"
+                                color="inherit"
+                                onClick={hanConfirm}
+                            >
+                                 si
+                            </Button>
+
+                            <Button
+                                type="submit"
+                                fullWidth
+                                variant="contained"
+                                color="inherit"
+                                onClick={() => setState(false)}
+                            >
+                                 no
+                            </Button>
+                            </div>
+                        </div>  
+                </div>}
+            
+        </>
+    )
+
+    const CloseModal =() => (
+        <>
+        {ismodal &&<div className="border-ri" >
+                        <div className="content-Modal" >
+                            <div>
+                                <span>Tu informacion fue enviada con exicto</span>
+                            </div>
+                        </div>  
+                </div>
+        }
+        </>
+    )
 
     const fillSignInHeader = () => (
         <>
@@ -64,7 +151,7 @@ export const LoginForm: React.FC<loginFormProps> = ({title = 'Formularios', erro
 
     const fillForm = () => (
         <>
-            <form  noValidate onSubmit={verifyForm}>
+            <form   onSubmit={verifyForm}>
                 <Input
                     required
                     fullWidth
@@ -79,24 +166,23 @@ export const LoginForm: React.FC<loginFormProps> = ({title = 'Formularios', erro
                     variant="outlined"
                     margin="normal"
                     label="Email"
-                    autoComplete="current-password"
-                    {...password} />
+                    {...email} />
                 <Input
                     required
                     fullWidth
                     variant="outlined"
                     margin="normal"
-                    autoComplete="current-password"
                     label="Celular"
-                    {...password} />
+                    type="number"
+                    {...phone} />
                 <Input
                     required
                     fullWidth
                     variant="outlined"
                     margin="normal"
-                    autoComplete="current-password"
                     label="Rango de edad"
-                    {...password} />
+                    type="number"
+                    {...age} />
                 <Button
                     type="submit"
                     fullWidth
@@ -106,6 +192,8 @@ export const LoginForm: React.FC<loginFormProps> = ({title = 'Formularios', erro
                 >
                     Enviar formularios
                 </Button>
+                {Modal()}
+                {CloseModal()}
             </form>
         </>
     )
